@@ -7,6 +7,7 @@
 #include <RH_RF69.h>
 #include <RHReliableDatagram.h>
 #include "Adafruit_Si7021.h"
+#include <SerialCommands.h>
 
 // TRANSMITTER
 
@@ -43,8 +44,10 @@ float Temperature;
 
 int WindSpeedSampleCounter = 0;
 
-String values;
-bool serialDebug = true;
+bool serialDebug = false;
+
+char serial_command_buffer_[32];
+SerialCommands serial_commands_(&Serial, serial_command_buffer_, sizeof(serial_command_buffer_), "\r\n", " ");
 
 Adafruit_TSL2591 tsl = Adafruit_TSL2591(2591);
 // Singleton instance of the radio driver
@@ -53,16 +56,39 @@ RH_RF69 rf69(RFM69_CS, RFM69_INT);
 RHReliableDatagram rf69_manager(rf69, MY_ADDRESS);
 Adafruit_Si7021 si7021 = Adafruit_Si7021();
 
+void cmd_unrecognized(SerialCommands* sender, const char* cmd)
+{
+  sender->GetSerial()->print("ERROR: Unrecognized command [");
+  sender->GetSerial()->print(cmd);
+  sender->GetSerial()->println("]");
+}
+
+void cmd_receive(SerialCommands* sender)
+{
+  //Do not use Serial.Print!
+  //Use sender->GetSerial this allows sharing the callback method with multiple Serial Ports
+  sender->GetSerial()->println("COMMAND RECEIVED");
+  sendData("1");
+}
+SerialCommand cmd_receive_("receive", cmd_receive);
+
+void cmd_flush() {
+  Serial.flush();
+}
+
+SerialCommand cmd_flush_("flush", cmd_flush);
+
 void setup() {
-  if (serialDebug) {
-    Serial.begin(115200);
-  }
+  Serial.begin(115200);
+  while(!Serial);
+  serial_commands_.AddCommand(&cmd_receive_);
+  serial_commands_.AddCommand(&cmd_flush_);
+  serial_commands_.SetDefaultHandler(&cmd_unrecognized);
   setupCommunication();
 }
 
 void loop() {  
-  values = "Peter ist doof";
-  sendData();
+  serial_commands_.ReadSerial();
 }
 
 void setupCommunication() {
@@ -103,10 +129,10 @@ void setupCommunication() {
 uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
 uint8_t data[] = "  OK";
 
-void sendData() {
-  int valuesLength = values.length() + 1;
-  char radiopacket[valuesLength];
-  values.toCharArray(radiopacket, valuesLength);
+void sendData(String value) {
+  int valueLength = value.length() + 1;
+  char radiopacket[valueLength];
+  value.toCharArray(radiopacket, valueLength);
 
   if (serialDebug) {
     Serial.print("Sending "); 

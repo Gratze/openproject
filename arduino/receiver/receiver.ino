@@ -2,7 +2,7 @@
 #include <RH_RF69.h>
 #include <RHReliableDatagram.h>
 #include <RHReliableDatagram.h>
-#include <SerialCommand.h>
+#include <SerialCommands.h>
 
 // RECEIVER
 // Pinbelegung des Boards definieren (ATmega32U4)
@@ -33,9 +33,6 @@ RH_RF69 rf69(RFM69_CS, RFM69_INT);
 
 // Class to manage message delivery and receipt, using the driver declared above
 RHReliableDatagram rf69_manager(rf69, MY_ADDRESS);
-
-// SerialCommand Handler. Hört in loop auf Befehle die über serielle Schnittstelle empfangen werden
-SerialCommand sCmd;
 
 void setup()
 {
@@ -73,14 +70,7 @@ void setup()
   rf69.setEncryptionKey(key);
   
   pinMode(LED, OUTPUT);
-  sCmd.addCommand("FLUSH", flushHandler);
   //sCmd.addCommand("RESET", resetHandler);
-}
-
-
-
-void flushHandler() {
-  Serial.flush();
 }
 
 // Dont put this on the stack:
@@ -96,18 +86,26 @@ void loop() {
     uint8_t from;
     if (rf69_manager.recvfromAck(buf, &len, &from)) {
       buf[len] = 0; // zero out remaining string
+      char* command = (char*) buf;
+      char cmd = command[0];
+      
+      switch (cmd) {
+        case '1': 
+          digitalWrite(LED, HIGH);
+          delay(1000);
+          digitalWrite(LED, LOW);
+          break;
+        default:
+          Serial.println("Command not supported.");
+          break;
+      }
 
-      Serial.println((char*)buf);
-      Blink(LED, 40, 3); //blink LED 3 times, 40ms between blinks
+      Serial.println(cmd);
+      // Blink(LED, 40, 3); //blink LED 3 times, 40ms between blinks
 
       // Send a reply back to the originator client
       if (!rf69_manager.sendtoWait(data, sizeof(data), from))
         Serial.println("Sending failed (no ack)");
-    }
-  }
-  if (Serial) {
-    if (Serial.available() > 0) {
-      sCmd.readSerial();
     }
   }
 }
