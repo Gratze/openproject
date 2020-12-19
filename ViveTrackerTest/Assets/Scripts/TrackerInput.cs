@@ -1,10 +1,15 @@
-﻿using UnityEngine;
-using System;
-using UnityEngine.XR;
+﻿using System;
 using System.Collections;
-public class WeatherStation : MonoBehaviour {
+using System.Collections.Generic;
+using UnityEngine;
+using Valve.VR;
 
-    // ArduinoConnector Thread Setup
+
+public class TrackerInput : MonoBehaviour
+{
+    public SteamVR_Input_Sources hand;
+
+        // ArduinoConnector Thread Setup
 #if !UNITY_EDITOR && UNITY_WSA_10_0
     private ArduinoConnectorUWP arduinoConnector;
 #else
@@ -26,14 +31,22 @@ public class WeatherStation : MonoBehaviour {
     }
 
     void Update() {
+        if(SteamVR_Input.GetStateDown("Btn1", hand)){
+            Debug.Log("Button 1 pressed");
+        }
+        
+        if(SteamVR_Input.GetStateDown("Btn2", hand)){
+            Debug.Log("Button 2 pressed");
+        }
+
+        if(SteamVR_Input.GetStateDown("Btn3", hand)){
+            Debug.Log("Button 3 pressed");
+        }
+
+        if(SteamVR_Input.GetStateDown("Btn4", hand)){
+            Debug.Log("Button 4 pressed");
             if (debugData) {
-            if( arduinoConnector != null) {
-                arduinoMessage = arduinoConnector.ReadFromArduino();
-                Debug.Log("Message:  " + arduinoMessage);
-                if (arduinoMessage != null && !arduinoMessage.Equals("Sending failed (no ack)")) {
-                    String[] values = arduinoMessage.Split(';');
-                    
-                }
+                sendData();
             }
         }
     }
@@ -43,11 +56,11 @@ public class WeatherStation : MonoBehaviour {
         arduinoConnector.isThreadActive = false;
     }
 
-    public void sendDate(){
+    public void sendData(){
         if( arduinoConnector != null) {
             arduinoConnector.SendToArduino("receive");
             Debug.Log("Data sent");
         }
     }
-
 }
+
