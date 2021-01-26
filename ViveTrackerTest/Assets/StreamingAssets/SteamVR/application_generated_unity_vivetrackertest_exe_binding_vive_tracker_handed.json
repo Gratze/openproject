@@ -34,7 +34,7 @@
                   }
                },
                "mode" : "button",
-               "path" : "/user/hand/left/input/trigger"
+               "path" : "/user/hand/left/input/thumb"
             },
             {
                "inputs" : {
@@ -43,30 +43,12 @@
                   }
                },
                "mode" : "button",
-               "path" : "/user/hand/right/input/trigger"
+               "path" : "/user/hand/right/input/thumb"
             },
             {
                "inputs" : {
                   "click" : {
                      "output" : "/actions/default/in/btn2"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/grip"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/default/in/btn2"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/grip"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/default/in/btn3"
                   }
                },
                "mode" : "button",
@@ -75,7 +57,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/btn3"
+                     "output" : "/actions/default/in/btn2"
                   }
                },
                "mode" : "button",
@@ -84,11 +66,20 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/btn4"
+                     "output" : "/actions/default/in/btn3"
                   }
                },
                "mode" : "button",
-               "path" : "/user/hand/left/input/thumb"
+               "path" : "/user/hand/left/input/grip"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/btn3"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/grip"
             },
             {
                "inputs" : {
@@ -97,7 +88,16 @@
                   }
                },
                "mode" : "button",
-               "path" : "/user/hand/right/input/thumb"
+               "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/btn4"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trigger"
             }
          ]
       },
@@ -127,7 +127,7 @@
    "category" : "steamvr_input",
    "controller_type" : "vive_tracker_handed",
    "description" : "",
-   "name" : "Konfiguration „ViveTrackerTest [Testing]“ für Vive Tracker in Hand gespeichert",
+   "name" : "Konfiguration „[Testing] ViveTrackerTest“ für Vive Tracker in Hand gespeichert",
    "options" : {},
    "simulated_actions" : []
 }

@@ -132,18 +132,22 @@
     {
       "controller_type": "vive_tracker",
       "binding_url": "application_generated_unity_vivetrackertest_exe_binding_vive_tracker.json"
+    },
+    {
+      "controller_type": "vive_tracker_handed",
+      "binding_url": "application_generated_unity_vivetrackertest_exe_binding_vive_tracker_handed.json"
     }
   ],
   "localization": [
     {
       "language_tag": "en_US",
-      "/actions/default/in/Pose": "Pose",
-      "/actions/default/out/Haptic": "haptic",
-      "/actions/platformer/in/Jump": "Jump",
       "/actions/default/in/Btn1": "btn1",
       "/actions/default/in/Btn2": "btn2",
       "/actions/default/in/Btn3": "btn3",
-      "/actions/default/in/Btn4": "btn4"
+      "/actions/default/in/Btn4": "btn4",
+      "/actions/default/in/Pose": "Pose",
+      "/actions/default/out/Haptic": "haptic",
+      "/actions/platformer/in/Jump": "Jump"
     }
   ]
 }

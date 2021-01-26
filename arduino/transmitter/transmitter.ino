@@ -63,14 +63,23 @@ void cmd_unrecognized(SerialCommands* sender, const char* cmd)
   sender->GetSerial()->println("]");
 }
 
-void cmd_receive(SerialCommands* sender)
+void cmd_on(SerialCommands* sender)
 {
   //Do not use Serial.Print!
   //Use sender->GetSerial this allows sharing the callback method with multiple Serial Ports
-  sender->GetSerial()->println("COMMAND RECEIVED");
+  sender->GetSerial()->println("COMMAND ON");
   sendData("1");
 }
-SerialCommand cmd_receive_("receive", cmd_receive);
+SerialCommand cmd_on_("on", cmd_on);
+
+void cmd_off(SerialCommands* sender)
+{
+  //Do not use Serial.Print!
+  //Use sender->GetSerial this allows sharing the callback method with multiple Serial Ports
+  sender->GetSerial()->println("COMMAND OFF");
+  sendData("0");
+}
+SerialCommand cmd_off_("off", cmd_off);
 
 void cmd_flush() {
   Serial.flush();
@@ -81,7 +90,8 @@ SerialCommand cmd_flush_("flush", cmd_flush);
 void setup() {
   Serial.begin(115200);
   while(!Serial);
-  serial_commands_.AddCommand(&cmd_receive_);
+  serial_commands_.AddCommand(&cmd_on_);
+  serial_commands_.AddCommand(&cmd_off_);
   serial_commands_.AddCommand(&cmd_flush_);
   serial_commands_.SetDefaultHandler(&cmd_unrecognized);
   setupCommunication();

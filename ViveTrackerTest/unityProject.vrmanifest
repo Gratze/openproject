@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.vivetrackertest.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "A:\\MASTER HSD\\OpenHealth\\ViveTrackerTest\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "A:\\MASTER HSD\\OpenHealth\\git\\openproject\\ViveTrackerTest\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "ViveTrackerTest [Testing]"

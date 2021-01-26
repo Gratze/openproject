@@ -25,6 +25,8 @@ public class TrackerInput : MonoBehaviour
     [SerializeField]
     private bool debugData = false;
 
+    private bool toggle = false;
+
     void Start () {
 
         arduinoConnector = new ArduinoConnector(baudRate);
@@ -33,6 +35,16 @@ public class TrackerInput : MonoBehaviour
     void Update() {
         if(SteamVR_Input.GetStateDown("Btn1", hand)){
             Debug.Log("Button 1 pressed");
+            if(!toggle){
+                Debug.Log("Button 1 pressed: ON");
+                sendData("on");
+                toggle = true;
+            }
+            else{
+                Debug.Log("Button 1 pressed: OFF");
+                sendData("off");
+                toggle = false;
+            }
         }
         
         if(SteamVR_Input.GetStateDown("Btn2", hand)){
@@ -46,7 +58,7 @@ public class TrackerInput : MonoBehaviour
         if(SteamVR_Input.GetStateDown("Btn4", hand)){
             Debug.Log("Button 4 pressed");
             if (debugData) {
-                sendData();
+                
             }
         }
     }
@@ -56,9 +68,9 @@ public class TrackerInput : MonoBehaviour
         arduinoConnector.isThreadActive = false;
     }
 
-    public void sendData(){
+    public void sendData(String message){
         if( arduinoConnector != null) {
-            arduinoConnector.SendToArduino("receive");
+            arduinoConnector.SendToArduino(message);
             Debug.Log("Data sent");
         }
     }
