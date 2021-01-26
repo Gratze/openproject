@@ -128,25 +128,36 @@ uint8_t data[] = "And hello back to you";
 uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
 
 void loop() {
+  
   if (rf69_manager.available())
   {
+    Serial.println("received");
     // Wait for a message addressed to us from the client
     uint8_t len = sizeof(buf);
     uint8_t from;
     if (rf69_manager.recvfromAck(buf, &len, &from)) {
-        if ((char*)buf == "on") {
-            led_on = true;
-            bar16.Heartbeat(COLOR32(255, 0, 0), 20, 10);
-        }
-        if ((char*)buf == "off") {
-            led_on = false;
-              bar16.ColorSet(bar16.Color(0,0,0));
-              bar16.update();
-        }
+        char* command = (char*) buf;
+        char cmd = command[0];
+      
+          switch (cmd) {
+            case '0': 
+              Serial.println("Lampe AUS");
+              led_on = false;
+              bar16.Heartbeat(COLOR32(0, 0, 0), 0, 0);;
+              break;
+            case '1': 
+              Serial.println("Lampe AN");
+              led_on = true;
+              bar16.Heartbeat(COLOR32(255, 0, 0), 20, 10);
+              break;
+            default:
+              Serial.println("Command not supported.");
+              break;
+          }
         
       buf[len] = 0; // zero out remaining string
 
-      Serial.println((char*)buf);
+      Serial.println(cmd);
       // Blink(LED, 40, 3); //blink LED 3 times, 40ms between blinks
 
       // Send a reply back to the originator client
@@ -159,7 +170,6 @@ void loop() {
       sCmd.readSerial();
     }
   }
-    Serial.println(led_on);
 
    if (led_on == true) {
         bar16.update();
@@ -180,11 +190,4 @@ void Blink(byte pin, byte delay_ms, byte loops) {
 
 void OnePattern(NeoPatterns *aLedsPtr){
   
-}
-
-void ColorSet(uint32_t color){
-  for(int i = 0; i< bar16.numPixels(); i++){
-    bar16.setPixelColor(i, color);
-  }
-  bar16.show();
 }
