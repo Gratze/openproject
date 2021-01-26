@@ -114,6 +114,7 @@ void setup()
     // END of Trinket-specific code.
 
   bar16.begin(); // This sets the pin. 
+  pinMode(10, OUTPUT);
 }
 
 
@@ -143,12 +144,14 @@ void loop() {
             case '0': 
               Serial.println("Lampe AUS");
               led_on = false;
-              bar16.Heartbeat(COLOR32(0, 0, 0), 0, 0);;
+              bar16.Heartbeat(COLOR32(0, 0, 0), 0, 0);
+              digitalWrite(10, LOW);
               break;
             case '1': 
               Serial.println("Lampe AN");
               led_on = true;
               bar16.Heartbeat(COLOR32(255, 0, 0), 20, 10);
+              digitalWrite(10, HIGH);
               break;
             default:
               Serial.println("Command not supported.");
