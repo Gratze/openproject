@@ -3,6 +3,7 @@
 #include <RHReliableDatagram.h>
 #include <RHReliableDatagram.h>
 #include <SerialCommands.h>
+#include <NeoPatterns.h>
 
 // RECEIVER
 // Pinbelegung des Boards definieren (ATmega32U4)
@@ -33,6 +34,15 @@ RH_RF69 rf69(RFM69_CS, RFM69_INT);
 
 // Class to manage message delivery and receipt, using the driver declared above
 RHReliableDatagram rf69_manager(rf69, MY_ADDRESS);
+
+// Which pin on the Arduino is connected to the NeoPixels?
+#define PIN_NEOPIXEL_BAR_16          13
+
+// onComplete callback functions
+void OnePattern(NeoPatterns *aLedsPtr);
+
+// The NeoPatterns instances
+NeoPatterns bar16 = NeoPatterns(7, PIN_NEOPIXEL_BAR_16, NEO_GRB + NEO_KHZ800, &OnePattern);
 
 void setup()
 {
@@ -71,6 +81,7 @@ void setup()
   
   pinMode(LED, OUTPUT);
   //sCmd.addCommand("RESET", resetHandler);
+  bar16.begin(); // This sets the pin. 
 }
 
 // Dont put this on the stack:
@@ -90,14 +101,24 @@ void loop() {
       char cmd = command[0];
       
       switch (cmd) {
+        case '0': 
+          Serial.println("Lampe AUS");
+            led_on = false;
+              bar16.ColorSet(bar16.Color(0,0,0));
+              bar16.update();
+          break;
         case '1': 
-          digitalWrite(LED, HIGH);
-          delay(1000);
-          digitalWrite(LED, LOW);
+          Serial.println("Lampe AN");
+            led_on = true;
+            bar16.Heartbeat(COLOR32(255, 0, 0), 20, 10);
           break;
         default:
           Serial.println("Command not supported.");
           break;
+      }
+
+      if (led_on == true) {
+        bar16.update();
       }
 
       Serial.println(cmd);
@@ -110,6 +131,16 @@ void loop() {
   }
 }
 
+void OnePattern(NeoPatterns *aLedsPtr){
+  
+}
+
+void ColorSet(uint32_t color){
+  for(int i = 0; i< bar16.numPixels(); i++){
+    bar16.setPixelColor(i, color);
+  }
+  bar16.show();
+}
 
 
 /*
