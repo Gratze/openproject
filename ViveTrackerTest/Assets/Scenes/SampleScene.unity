@@ -813,7 +813,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 68120052}
         m_TargetAssemblyTypeName: TrackerInput, Assembly-CSharp
-        m_MethodName: sendData
+        m_MethodName: toggleButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

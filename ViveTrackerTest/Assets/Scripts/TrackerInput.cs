@@ -74,5 +74,18 @@ public class TrackerInput : MonoBehaviour
             Debug.Log("Data sent");
         }
     }
+
+    public void toggleButton(){
+         if(!toggle){
+                Debug.Log("Button 1 pressed: ON");
+                sendData("on");
+                toggle = true;
+            }
+            else{
+                Debug.Log("Button 1 pressed: OFF");
+                sendData("off");
+                toggle = false;
+            }
+    }
 }
 

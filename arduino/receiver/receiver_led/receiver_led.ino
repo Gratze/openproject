@@ -64,7 +64,7 @@ RHReliableDatagram rf69_manager(rf69, MY_ADDRESS);
 // SerialCommand Handler. Hört in loop auf Befehle die über serielle Schnittstelle empfangen werden
 SerialCommand sCmd;
 
-bool led_on = true;
+bool led_on = false;
 
 void setup()
 {
@@ -128,6 +128,10 @@ uint8_t data[] = "And hello back to you";
 // Dont put this on the stack:
 uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
 
+int lastUpdate = 0;
+int Interval = 1000;
+bool vibrationState = false;
+
 void loop() {
   
   if (rf69_manager.available())
@@ -145,13 +149,12 @@ void loop() {
               Serial.println("Lampe AUS");
               led_on = false;
               bar16.Heartbeat(COLOR32(0, 0, 0), 0, 0);
-              digitalWrite(10, LOW);
+              
               break;
             case '1': 
               Serial.println("Lampe AN");
               led_on = true;
               bar16.Heartbeat(COLOR32(255, 0, 0), 20, 10);
-              digitalWrite(10, HIGH);
               break;
             default:
               Serial.println("Command not supported.");
@@ -177,6 +180,22 @@ void loop() {
    if (led_on == true) {
         bar16.update();
     }
+    else{
+      digitalWrite(10, LOW);
+    }
+
+   if(led_on && (millis() - lastUpdate) > Interval){
+    lastUpdate = millis(); 
+    if(vibrationState){
+      digitalWrite(10, LOW);
+      vibrationState = false;
+    }
+    else{
+      digitalWrite(10, HIGH);
+      vibrationState = true;
+    }
+   }
+   
 }
 
 /*
