@@ -133,7 +133,6 @@ uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
 
 unsigned long lastUpdate = 0;
 int Interval = 1000;
-bool vibrationState = false;
 
 void loop() {
   
@@ -189,14 +188,14 @@ void loop() {
 
    if(led_on && (millis() - lastUpdate) > Interval){
     lastUpdate = millis(); 
-    if(vibrationState){
+      analogWrite(10, 200);
+      delay(100);
       digitalWrite(10, LOW);
-      vibrationState = false;
-    }
-    else{
-      analogWrite(10, 120);
-      vibrationState = true;
-    }
+      delay(300);
+      analogWrite(10, 250);
+      delay(150);
+      digitalWrite(10, LOW);
+ 
    }
    
 }
