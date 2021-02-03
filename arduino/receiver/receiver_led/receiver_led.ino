@@ -115,6 +115,9 @@ void setup()
 
   bar16.begin(); // This sets the pin. 
   pinMode(10, OUTPUT);
+  digitalWrite(10, HIGH);
+  delay(1000);
+  digitalWrite(10, LOW);
 }
 
 
@@ -128,7 +131,7 @@ uint8_t data[] = "And hello back to you";
 // Dont put this on the stack:
 uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
 
-int lastUpdate = 0;
+unsigned long lastUpdate = 0;
 int Interval = 1000;
 bool vibrationState = false;
 
@@ -191,7 +194,7 @@ void loop() {
       vibrationState = false;
     }
     else{
-      digitalWrite(10, HIGH);
+      analogWrite(10, 120);
       vibrationState = true;
     }
    }
