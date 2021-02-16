@@ -49,6 +49,8 @@ NeoPatterns bar16 = NeoPatterns(7, PIN_NEOPIXEL_BAR_16, NEO_GRB + NEO_KHZ800, &O
 // who am i? (server address)
 #define MY_ADDRESS     1
 
+#define TRANSMITTER_ADDRESS 2
+
 
 #if defined (__AVR_ATmega32U4__) // Feather 32u4 w/Radio
   #define RFM69_CS      8
@@ -204,29 +206,26 @@ void loop() {
    }
 
    // Check if heart was opened or closed
-   bool new_heart_is_open = heartdigitalRead(HEART_VALVE)
-    //  if (!heart_is_open && new_heart_is_open) {
-    //    // closed -> open
-    //  }
-    //  if (!heart_is_open && !new_heart_is_open) {
-    //    // closed -> closed
-    //  }
-    //  if (heart_is_open && new_heart_is_open) {
-    //    // open -> open
-    //  }
-    //  if (heart_is_open && !new_heart_is_open) {
-    //    // open -> closed
-    //  }
+   bool new_heart_is_open = digitalRead(HEART_VALVE);
 
    if (heart_is_open != new_heart_is_open) {
      // state has changed
      heart_is_open = new_heart_is_open;
-     Serial.println("Heart was " + new_heart_is_open ? "opened." : "closed.")
+     Serial.println("Heart was " + new_heart_is_open ? "opened." : "closed.");
      if (rf69_manager.available()) {
-       !rf69_manager.sendtoWait(data, sizeof(data), from))
-        Serial.println("Sending failed: Received no ack.");
+        uint8_t data_opened[] = "HEART OPENED";
+        uint8_t data_closed[] = "HEART CLOSED";
+        if (new_heart_is_open) {
+          if (!rf69_manager.sendtoWait(data_opened, sizeof(data_opened), TRANSMITTER_ADDRESS)) {
+            Serial.println("Sending failed: Received no ack.");
+          }
+        } else {
+          if (!rf69_manager.sendtoWait(data_closed, sizeof(data_closed), TRANSMITTER_ADDRESS)) {
+            Serial.println("Sending failed: Received no ack.");
+          }
+        }
       } else {
-        Serial.println("Sending failed: rf69 manager not available.")
+        Serial.println("Sending failed: rf69 manager not available.");
       }
    } 
 }
