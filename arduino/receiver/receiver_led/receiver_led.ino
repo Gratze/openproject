@@ -77,12 +77,13 @@ void setup()
   Serial.begin(115200);
   //while (!Serial) { delay(1); } // wait until serial console is open, remove if not tethered to computer
 
-  // pinMode(LED, OUTPUT);     
+  pinMode(LED, OUTPUT);     
   pinMode(RFM69_RST, OUTPUT);
   digitalWrite(RFM69_RST, LOW);
 
   // heart valve
   pinMode(HEART_VALVE, INPUT);
+  heart_is_open = digitalRead(HEART_VALVE);
 
   // manual reset
   digitalWrite(RFM69_RST, HIGH);
@@ -210,8 +211,14 @@ void loop() {
 
    if (heart_is_open != new_heart_is_open) {
      // state has changed
+     Serial.println(heart_is_open);
+     Serial.println(new_heart_is_open);
      heart_is_open = new_heart_is_open;
-     Serial.println("Heart was " + new_heart_is_open ? "opened." : "closed.");
+     if (new_heart_is_open) {
+        Serial.println("Heart was opened");
+     } else {
+        Serial.println("Heart was closed");
+     }
      if (rf69_manager.available()) {
         uint8_t data_opened[] = "HEART OPENED";
         uint8_t data_closed[] = "HEART CLOSED";
