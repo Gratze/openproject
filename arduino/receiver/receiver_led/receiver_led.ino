@@ -39,6 +39,7 @@ NeoPatterns bar16 = NeoPatterns(7, PIN_NEOPIXEL_BAR_16, NEO_GRB + NEO_KHZ800, &O
 #define RFM69_INT     7     // IRQ (interrupt request) - Unterbrechungsanforderung an Prozessor (Warten des Programmes auf Senden und Empfangen des Funkmoduls)
 #define RFM69_RST     4     // Reset des Funkmoduls
 #define LED           13    // LED Leuchte
+#define HEART_VALVE   12    // Herzklappe
 #endif
 
 
@@ -54,6 +55,7 @@ NeoPatterns bar16 = NeoPatterns(7, PIN_NEOPIXEL_BAR_16, NEO_GRB + NEO_KHZ800, &O
   #define RFM69_INT     7
   #define RFM69_RST     4
   #define LED           13
+  #define HEART_VALVE   12
 #endif
 // Singleton instance of the radio driver
 RH_RF69 rf69(RFM69_CS, RFM69_INT);
@@ -65,6 +67,7 @@ RHReliableDatagram rf69_manager(rf69, MY_ADDRESS);
 SerialCommand sCmd;
 
 bool led_on = false;
+bool heart_is_open = false;
 
 void setup()
 {
@@ -75,6 +78,9 @@ void setup()
   // pinMode(LED, OUTPUT);     
   pinMode(RFM69_RST, OUTPUT);
   digitalWrite(RFM69_RST, LOW);
+
+  // heart valve
+  pinMode(HEART_VALVE, INPUT);
 
   // manual reset
   digitalWrite(RFM69_RST, HIGH);
@@ -195,9 +201,34 @@ void loop() {
       analogWrite(10, 250);
       delay(150);
       digitalWrite(10, LOW);
- 
    }
-   
+
+   // Check if heart was opened or closed
+   bool new_heart_is_open = heartdigitalRead(HEART_VALVE)
+    //  if (!heart_is_open && new_heart_is_open) {
+    //    // closed -> open
+    //  }
+    //  if (!heart_is_open && !new_heart_is_open) {
+    //    // closed -> closed
+    //  }
+    //  if (heart_is_open && new_heart_is_open) {
+    //    // open -> open
+    //  }
+    //  if (heart_is_open && !new_heart_is_open) {
+    //    // open -> closed
+    //  }
+
+   if (heart_is_open != new_heart_is_open) {
+     // state has changed
+     heart_is_open = new_heart_is_open;
+     Serial.println("Heart was " + new_heart_is_open ? "opened." : "closed.")
+     if (rf69_manager.available()) {
+       !rf69_manager.sendtoWait(data, sizeof(data), from))
+        Serial.println("Sending failed: Received no ack.");
+      } else {
+        Serial.println("Sending failed: rf69 manager not available.")
+      }
+   } 
 }
 
 /*
