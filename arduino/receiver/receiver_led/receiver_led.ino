@@ -17,13 +17,18 @@
 #endif
 
 // Which pin on the Arduino is connected to the NeoPixels?
-#define PIN_NEOPIXEL_BAR_16          13
+#define LED_PIN          13
+#define LED_COUNT          7
 
 // onComplete callback functions
 void OnePattern(NeoPatterns *aLedsPtr);
 
 // The NeoPatterns instances
-NeoPatterns bar16 = NeoPatterns(7, PIN_NEOPIXEL_BAR_16, NEO_GRB + NEO_KHZ800, &OnePattern);
+//NeoPatterns bar16 = NeoPatterns(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800, &OnePattern);
+
+//NeoPixels
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
 
 #include <SPI.h>
 #include <RH_RF69.h>
@@ -122,7 +127,9 @@ void setup()
     #endif
     // END of Trinket-specific code.
 
-  bar16.begin(); // This sets the pin. 
+  //bar16.begin(); // This sets the pin. 
+  strip.begin();
+  strip.show();
   pinMode(10, OUTPUT);
   digitalWrite(10, HIGH);
   delay(1000);
@@ -141,7 +148,7 @@ uint8_t data[] = "And hello back to you";
 uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
 
 unsigned long lastUpdate = 0;
-int Interval = 1000;
+int vibrationCounter = 0;
 
 void loop() {
   
@@ -159,13 +166,13 @@ void loop() {
             case '0': 
               Serial.println("Lampe AUS");
               led_on = false;
-              bar16.Heartbeat(COLOR32(0, 0, 0), 0, 0);
+              //bar16.Heartbeat(COLOR32(0, 0, 0), 0, 0);
               
               break;
             case '1': 
               Serial.println("Lampe AN");
               led_on = true;
-              bar16.Heartbeat(COLOR32(255, 0, 0), 20, 10);
+              //bar16.Heartbeat(COLOR32(255, 0, 0), 29, 0);
               break;
             default:
               Serial.println("Command not supported.");
@@ -188,22 +195,62 @@ void loop() {
     }
   }
 
-   if (led_on == true) {
-        bar16.update();
-    }
-    else{
+   if (!led_on) {
+      //bar16.update();
       digitalWrite(10, LOW);
+      strip.clear();
+      strip.show();
     }
 
-   if(led_on && (millis() - lastUpdate) > Interval){
-    lastUpdate = millis(); 
-      analogWrite(10, 200);
-      delay(100);
-      digitalWrite(10, LOW);
-      delay(300);
-      analogWrite(10, 250);
-      delay(150);
-      digitalWrite(10, LOW);
+   if(led_on){
+      if(vibrationCounter == 0){
+        lastUpdate = millis(); 
+        analogWrite(10, 200);
+        for(int i = 0; i < 60; i++){
+          for(int j = 0; j < strip.numPixels(); j++){
+            strip.setPixelColor(j, i, 0, 0);
+          } 
+        }
+        strip.show();
+        vibrationCounter++;
+      }
+      
+      if((millis() - lastUpdate) > 100 && vibrationCounter == 1){
+        digitalWrite(10, LOW);
+        for(int i = 60; i > 10; i--){
+          for(int j = 0; j < strip.numPixels(); j++){
+            strip.setPixelColor(j, i, 0, 0);
+          } 
+        }
+        strip.show();
+        vibrationCounter++;
+      }
+      
+      if((millis() - lastUpdate) > 400 && vibrationCounter == 2){
+        analogWrite(10, 250);
+        for(int i = 0; i < 150; i++){
+          for(int j = 0; j < strip.numPixels(); j++){
+            strip.setPixelColor(j, i, 0, 0);
+          } 
+        }
+        strip.show();
+        vibrationCounter++;
+      }
+      
+      if((millis() - lastUpdate) > 550 && vibrationCounter == 3){
+        digitalWrite(10, LOW);
+        for(int i = 150; i > 0; i--){
+          for(int j = 0; j < strip.numPixels(); j++){
+            strip.setPixelColor(j, i, 0, 0);
+          } 
+        }
+        strip.show();
+        vibrationCounter++;
+      }
+
+      if((millis() - lastUpdate) > 1000 && vibrationCounter == 4){
+        vibrationCounter = 0;
+      }
    }
 
    // Check if heart was opened or closed

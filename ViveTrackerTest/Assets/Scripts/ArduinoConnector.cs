@@ -25,7 +25,7 @@ public class ArduinoConnector {
 
     // Konstruktor für Konfigdaten der serielle Schnittstelle
     public ArduinoConnector(int baudRate) {
-        serialPort = "COM12";//GetFirstSerialPort();
+        serialPort = "COM6";//GetFirstSerialPort();
         this.baudRate = baudRate;
         StartThread();
     }
