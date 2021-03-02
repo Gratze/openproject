@@ -159,6 +159,7 @@ MonoBehaviour:
   hand: 0
   baudRate: 115200
   debugData: 1
+  cube: {fileID: 68120051}
 --- !u!65 &68120053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 2
+  index: 1
   origin: {fileID: 0}
 --- !u!1 &663986753
 GameObject:

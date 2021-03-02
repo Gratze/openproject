@@ -27,6 +27,8 @@ public class TrackerInput : MonoBehaviour
 
     private bool toggle = false;
 
+    public GameObject cube;
+
     void Start () {
 
         arduinoConnector = new ArduinoConnector(baudRate);
@@ -35,16 +37,17 @@ public class TrackerInput : MonoBehaviour
     void Update() {
         if(SteamVR_Input.GetStateDown("Btn1", hand)){
             Debug.Log("Button 1 pressed");
-            if(!toggle){
-                Debug.Log("Button 1 pressed: ON");
-                sendData("on");
-                toggle = true;
-            }
-            else{
                 Debug.Log("Button 1 pressed: OFF");
-                sendData("off");
-                toggle = false;
-            }
+                //sendData("off");
+                cube.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+
+        }
+
+        if(SteamVR_Input.GetStateUp("Btn1", hand)){
+                Debug.Log("Button 1 pressed: ON");
+                //sendData("on");
+                cube.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+
         }
         
         if(SteamVR_Input.GetStateDown("Btn2", hand)){
