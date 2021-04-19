@@ -5,36 +5,36 @@ Hier kleine Zusammenfassung über Projekt
 - Geht um die virutelle / digitale Unterstützung der Lehre im medizinischen Bereich durch Tangibles
 - 3D Objekt als Interface zur Veranschaulichung des menschlichen Herzens
 
-# MOTIVATION
+## MOTIVATION
 Hier vielleicht kurze Motivation wieso wir das Projekt gemacht haben und worum es nochmal genau geht
 
-# OBJECTIVE
+## OBJECTIVE
 Hier kurz Zielsetzung und geplantes Outcome des Projektes
 
-# APPROACH
+## APPROACH
 Wie sind wir vorgegangen?
 
-## UNITY
+### UNITY
 Hier Unity kram erklären und zeigen
 
-## ARDUINO
+### ARDUINO
 Hier Arduino zeigen und erklären
 - Aufbau
 - Code
 
-## SENDING AND RECEIVING DATA
+### SENDING AND RECEIVING DATA
 Hier senden und empfangen erklären (Code)
 
-## 3D MODEL
+### 3D MODEL
 Hier Eigenschaften, Besonderheiten des Modells zeigen
 - Welches Modell, wie bearbeitet?
 - Wieso bearbeitet?
 
-# OUTCOME
+## OUTCOME
 Hier fertigen Prototypen zeigen und kurz drauf eingehen
 
-# ISSUES
+## ISSUES
 Issues faced during development
 
-# FUTURE WORK / OUTLOOK
+## FUTURE WORK / OUTLOOK
 Hier kurz Weiterentwicklungsmöglichkeiten, Optimierungsmöglichkeiten darlegen
