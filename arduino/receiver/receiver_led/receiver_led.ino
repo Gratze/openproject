@@ -18,7 +18,7 @@
 
 // Which pin on the Arduino is connected to the NeoPixels?
 #define LED_PIN          13
-#define LED_COUNT          7
+#define LED_COUNT        15
 
 // onComplete callback functions
 void OnePattern(NeoPatterns *aLedsPtr);
@@ -207,8 +207,9 @@ void loop() {
         lastUpdate = millis(); 
         analogWrite(10, 200);
         for(int i = 0; i < 60; i++){
-          for(int j = 0; j < strip.numPixels(); j++){
-            strip.setPixelColor(j, i, 0, 0);
+          for(int j = 7; j < 14; j++){
+            //Blau
+            strip.setPixelColor(j, 0, 0, i);
           } 
         }
         strip.show();
@@ -217,9 +218,9 @@ void loop() {
       
       if((millis() - lastUpdate) > 100 && vibrationCounter == 1){
         digitalWrite(10, LOW);
-        for(int i = 60; i > 10; i--){
-          for(int j = 0; j < strip.numPixels(); j++){
-            strip.setPixelColor(j, i, 0, 0);
+        for(int i = 60; i >= 0; i--){
+          for(int j = 7; j < 14; j++){
+            strip.setPixelColor(j, 0, 0, i);
           } 
         }
         strip.show();
@@ -229,7 +230,8 @@ void loop() {
       if((millis() - lastUpdate) > 400 && vibrationCounter == 2){
         analogWrite(10, 250);
         for(int i = 0; i < 150; i++){
-          for(int j = 0; j < strip.numPixels(); j++){
+          for(int j = 0; j < 7; j++){
+            //Rot
             strip.setPixelColor(j, i, 0, 0);
           } 
         }
@@ -239,8 +241,8 @@ void loop() {
       
       if((millis() - lastUpdate) > 550 && vibrationCounter == 3){
         digitalWrite(10, LOW);
-        for(int i = 150; i > 0; i--){
-          for(int j = 0; j < strip.numPixels(); j++){
+        for(int i = 150; i >= 0; i--){
+          for(int j = 0; j < 7; j++){
             strip.setPixelColor(j, i, 0, 0);
           } 
         }
