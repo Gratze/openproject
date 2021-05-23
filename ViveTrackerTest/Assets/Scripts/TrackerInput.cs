@@ -21,6 +21,9 @@ public class TrackerInput : MonoBehaviour
 
     [SerializeField]
     private int baudRate = 115200;
+
+    [SerializeField]
+    private string serialPort = "";
     
     [SerializeField]
     private bool debugData = false;
@@ -32,37 +35,40 @@ public class TrackerInput : MonoBehaviour
     void Start () {
 
         arduinoConnector = new ArduinoConnector(baudRate);
+        arduinoConnector.serialPort = serialPort;
     }
 
     void Update() {
-        if(SteamVR_Input.GetStateDown("Btn1", hand)){
-            Debug.Log("Button 1 pressed");
-                Debug.Log("Button 1 pressed: OFF");
-                //sendData("off");
-                cube.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        if(SteamVR_Input.GetStateDown("Btn2", hand)){
+            Debug.Log("Door closed");
+            //sendData("off");
+            cube.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
 
         }
 
-        if(SteamVR_Input.GetStateUp("Btn1", hand)){
-                Debug.Log("Button 1 pressed: ON");
+        if(SteamVR_Input.GetStateUp("Btn2", hand)){
+                Debug.Log("Door open");
                 //sendData("on");
                 cube.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
 
         }
-        
-        if(SteamVR_Input.GetStateDown("Btn2", hand)){
-            Debug.Log("Button 2 pressed");
+    
+
+        if(SteamVR_Input.GetStateDown("Btn1", hand)){
+            Debug.Log("Button on Heart-Top pressed");
+            cube.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
         }
 
-        if(SteamVR_Input.GetStateDown("Btn3", hand)){
-            Debug.Log("Button 3 pressed");
+        if(SteamVR_Input.GetStateUp("Btn1", hand)){
+                //sendData("on");
+                Debug.Log("Button on Heart-Top released");
+                cube.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+
         }
 
         if(SteamVR_Input.GetStateDown("Btn4", hand)){
-            Debug.Log("Button 4 pressed");
-            if (debugData) {
-                
-            }
+            Debug.Log("Button behind Door pressed");
+            toggleButton();
         }
     }
 

@@ -18,14 +18,14 @@ public class ArduinoConnector {
     public bool isThreadActive;
 
     [SerializeField]
-    private string serialPort = "";
+    public string serialPort = "";
     [SerializeField]
     private int baudRate = 0;
     private SerialPort stream;
 
     // Konstruktor für Konfigdaten der serielle Schnittstelle
     public ArduinoConnector(int baudRate) {
-        serialPort = "COM5";//GetFirstSerialPort();
+        //serialPort = "COM14";//GetFirstSerialPort();
         this.baudRate = baudRate;
         StartThread();
     }
