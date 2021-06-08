@@ -18,7 +18,8 @@ Hier kurz Zielsetzung und geplantes Outcome des Projektes
 ## APPROACH
 
 - Wie sind wir vorgegangen?
-- Komponentendiagramm mit Unity ↔ Adafruit am PC ↔ Adafruit am Herz
+
+![Open Health Components](./docs/component_diagram.png)
 
 ### UNITY
 
