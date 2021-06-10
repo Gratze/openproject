@@ -57,7 +57,12 @@ Hier kurz Zielsetzung und geplantes Outcome des Projektes
 
 ### SENDING AND RECEIVING DATA
 
-Hier senden und empfangen erklären (Code)
+Zum Senden an den Adafruit receiver, welcher sich im Herzen befindet, gibt es ein Skript innerhalb Unity, welches die Informationen über einen COM-Port via USB an den Transmitter übermittelt und dieser dann das Signal an den Receiver weiterleitet.
+In der Unity-Szene ist das Skript dem Würfel hinzugefügt. Dort kann der COM-Port an dem der Transmitter am Computer angeschlossen ist, festgelegt werden. Ebenso kann die BaudRate angepasst werden.
+Das Skript "ArduinoConnector.cs" verbindet sich beim Start der Szene über den COM-Port mit dem Adafruit-Transmitter. In diesem Skript gibt es verschiedene Funktionen zum verschicken oder empfangen von Daten aus dem Transmitter. In unserem Beispiel verwenden wir nur die SendToArduino(string command) Funktion, welche den Befehl in eine Queue setzt. Diese Queue wird in einer Loop überprüft und falls etwas darin steht, wird über die Funktion WriteToArduino(string message) versucht über den SerialPort die Nachricht an den Transmitter zu übergeben. Im Transmitter wird die SerialCommands Library verwendet, mit der man Events erstellen kann, welche auf Strings reagieren. Der Vorteil ist, dass dadurch weitere Events einfach hinzugefügt werden können.
+Dadurch können wir im TrackerInput.cs Script, wenn ein Button gedrückt wird bspw. die Nachricht (als String) "on" oder "off" an den Transmitter schicken. Die jeweiligen Events werten den String aus und falls ein Event auf den String passt, wird eine Funktion ausgeführt, welche eine neue Nachricht(auch als String) über die 433MHz Radio-Frequenz an den Receiver schickt. Bei uns wird bspw. die "on"-Nachricht erkannt und dann eine Nachricht mit dem Wert "1" an den receiver geschickt. Im Receiver wird über die RHReliableDatagram-Library der rf69_manager initialisiert, welcher erkennt ob Nachrichten empfangen werden. In der Loop wird dann überprüft ob im Buffer des rf69_manager eine Nachricht liegt. Ist dies der Fall, wird dieser ausgelesen und in einen Char umgewandelt. Dieser Char setzt dann in der Loop über einen einfachen Switch-Case den led_on-Bool auf true oder false. Je nach Zustand werden in der Loop dann die Leds und die Vibration an- oder ausgeschaltet.
+
+
 
 ### 3D MODEL
 
