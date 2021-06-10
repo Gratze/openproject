@@ -1,11 +1,6 @@
 # OPEN PROJECT - HEALTH
 
-Hier kleine Zusammenfassung über Projekt
-
-- Studentenprojekt an HSD
-- Unter Leitung von Laurin
-- Geht um die virutelle / digitale Unterstützung der Lehre im medizinischen Bereich durch Tangibles
-- 3D Objekt als Interface zur Veranschaulichung des menschlichen Herzens
+Open Project ist ein freies Wahlpflichtfach im Fachbereich Medien an der Hochschule Düsseldorf. In dem Projekt geht es um die digitale bzw. virtuelle Unterstützung der Lehre im medizinischen Bereich durch Tangibles. Dazu wurde ein 3D-Objekt als greifbares Interface zur Veranschaulichung des menschlichen Herzens entwickelt und prototypisch realisiert. 
 
 ## MOTIVATION
 
@@ -13,11 +8,13 @@ Hier vielleicht kurze Motivation wieso wir das Projekt gemacht haben und worum e
 
 ## OBJECTIVE
 
-Hier kurz Zielsetzung und geplantes Outcome des Projektes
+Ziel des Projektes stellt die prototypische Realisierung eines greifbaren Interfaces zur Unterstützung der Lehre in einem iterativen Prozess dar. Der Prototyp soll Studierenden der Medizin die Anatomie des Herzens vermitteln. Dazu soll mittels LEDs und Vibration ein Herzschlag simuliert werden. Zusätzlich soll das Tangible in Unity angesprochen und verschiedene Funktionen des Tangibles über Unity ausgeführt werden können.
 
 ## APPROACH
 
-- Wie sind wir vorgegangen?
+In einem iterativen Prozess mit insgesamt 4 Sprints wurde die Umsetzung des Prototypen geplant und realisiert. In der ersten Iteration wurde konzeptionell gearbeitet. Dabei wurden verschiedene Tangibles und die entsprechende Umsetzung recherchiert. Der Fokus lag auf den benötigten Komponenten und den verschiedenen Möglichkeiten ein Tangible zu entwickeln. Aus der Recherche ergaben sich teilweise die Anforderungen an den Prototypen sowie die benötigte Schnittstelle zwischen Unity und dem Tangible. In den zweiten Iteration wurde die Schnittstelle zwschen Unity und dem Tangible (Arduino) den Anforderungen entsprechend angepasst sowie eine erste Version des Tangibles mittels eines 3D-Druckers gedruckt. In den weiteren Iterationen lag der Fokus auf einem passenden 3D-Modell für das Herz sowie den entsprechenden Anpassungen für die verbaute Elektronik sowie den 3D-Druck. Weitere Funktionen bzw. softwareseitige Veränderungen entsprachen in diesen Iterationen eher kosmetischer Natur. 
+</br>
+In den folgenden Unterkapiteln wird auf die verschiedenen Komponenten des Tangibles sowie der benötigten Schnittstelle für die volle Funktionalität genauer eingegangen.
 
 ![Open Health Components](./docs/component_diagram.png)
 
