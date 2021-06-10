@@ -61,7 +61,7 @@ TO DO: SCHALTPLAN TRACKER
 └── └── └── transmitter.ino # Send messages from Adafruit connected to PC
 ```
 
-TO DO: SCHALTPLAN ARDUINO
+![Schaltplan für Arduino innerhalb des Herzmodells](./docs/hear_schaltplan.png)
 
 ### SENDEN UND EMPFANGEN DER DATEN
 
