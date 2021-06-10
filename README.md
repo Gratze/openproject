@@ -6,11 +6,11 @@ Open Project ist ein freies Wahlpflichtfach im Fachbereich Medien an der Hochsch
 
 Hier vielleicht kurze Motivation wieso wir das Projekt gemacht haben und worum es nochmal genau geht
 
-## OBJECTIVE
+## ZIELSETZUNG
 
 Ziel des Projektes stellt die prototypische Realisierung eines greifbaren Interfaces zur Unterstützung der Lehre in einem iterativen Prozess dar. Der Prototyp soll Studierenden der Medizin die Anatomie des Herzens vermitteln. Dazu soll mittels LEDs und Vibration ein Herzschlag simuliert werden. Zusätzlich soll das Tangible in Unity angesprochen und verschiedene Funktionen des Tangibles über Unity ausgeführt werden können.
 
-## APPROACH
+## UMSETZUNG
 
 In einem iterativen Prozess mit insgesamt 4 Sprints wurde die Umsetzung des Prototypen geplant und realisiert. In der ersten Iteration wurde konzeptionell gearbeitet. Dabei wurden verschiedene Tangibles und deren entsprechende Umsetzung recherchiert. Der Fokus lag auf den benötigten Komponenten und den verschiedenen Möglichkeiten ein Tangible zu entwickeln. Aus der Recherche ergaben sich teilweise die Anforderungen an den Prototypen sowie die benötigte Schnittstelle zwischen Unity und dem Tangible. In der zweiten Iteration wurde die Schnittstelle zwschen Unity und dem Tangible (Arduino) den Anforderungen entsprechend angepasst sowie eine erste Version des Tangibles mittels eines 3D-Druckers gedruckt. In den weiteren Iterationen lag der Fokus auf einem passenden 3D-Modell für das Herz, den entsprechenden Anpassungen für die verbaute Elektronik und dem 3D-Druck. Weitere Funktionen bzw. softwareseitige Veränderungen entsprachen in diesen Iterationen überwiegend kosmetischer Natur. </br>
 </br>
@@ -44,7 +44,6 @@ Hier Erklärung: Was macht das Skript? </br>
 Hier Erklärung:
 - Tracker in SteamVR
 - Probleme: Brille und Controller rauswerfen, damit Vive Tracker in Unity erkannt wird
-</br>
 
 ### ARDUINO
 
@@ -62,7 +61,7 @@ Hier Erklärung:
 
 - TODO: Schaltplan
 
-### SENDING AND RECEIVING DATA
+### SENDEN UND EMPFANGEN DER DATEN
 
 Zum Senden an den Adafruit receiver, welcher sich im Herzen befindet, gibt es ein Skript innerhalb Unity, welches die Informationen über einen COM-Port via USB an den Transmitter übermittelt und dieser dann das Signal an den Receiver weiterleitet.</br>
 </br>
@@ -72,11 +71,7 @@ Das Skript "ArduinoConnector.cs" verbindet sich beim Start der Szene über den C
 </br>
 Dadurch können wir im TrackerInput.cs Script, wenn ein Button gedrückt wird bspw. die Nachricht (als String) "on" oder "off" an den Transmitter schicken. Die jeweiligen Events werten den String aus und falls ein Event auf den String passt, wird eine Funktion ausgeführt, welche eine neue Nachricht(auch als String) über die 433MHz Radio-Frequenz an den Receiver schickt. Bei uns wird bspw. die "on"-Nachricht erkannt und dann eine Nachricht mit dem Wert "1" an den receiver geschickt. Im Receiver wird über die RHReliableDatagram-Library der rf69_manager initialisiert, welcher erkennt ob Nachrichten empfangen werden. In der Loop wird dann überprüft ob im Buffer des rf69_manager eine Nachricht liegt. Ist dies der Fall, wird dieser ausgelesen und in einen Char umgewandelt. Dieser Char setzt dann in der Loop über einen einfachen Switch-Case den led_on-Bool auf true oder false. Je nach Zustand werden in der Loop dann die Leds und die Vibration an- oder ausgeschaltet.
 
-
-
 ### 3D MODEL
-
-Hier Eigenschaften, Besonderheiten des Modells zeigen
 
 - **Software für die Bearbeitung**</br>
 Für das Modell wurde ein lizensiertes Herzmodell verwendet, welches nicht auf Github hochgeladen werden darf.
@@ -95,10 +90,10 @@ Für den 3D-Druck wurde die Slicer-Software "Ultimaker Cura" verwendet, welche d
 - **Nachbearbeitung**</br>
 Da man häufig erst ein Gefühl für das Modell bekommt wenn es gedruckt wurde, wir aber nicht soviel Plastikmüll generieren wollte, haben wir uns dafür entschieden an bestimmten Stellen das Modell mit der Hand und einem Dremel zu bearbeiten. Beispielsweise wurde an der unteren und oberen Hälfte etwas knapp mit dem Button-Slot geplant, deshalb wurde dieser dann etwas größer gefräst. Ähnlich war es beim Tracker Schiene, da wir dort noch die Kabel und Stecker unterbringen mussten, wurde hier auch gefräst und später die Stecker mit Heißkleber in der Schiene befestigt. Da manche Kanten durch den 3D-Druck nicht ganz so rund oder fein wurden, wurde auch hier etwas geschliffen, bis es besser gepasst hat.
 
-## OUTCOME
+## FINALER PROTOTYP
 
 Hier fertigen Prototypen zeigen und kurz drauf eingehen
 
-## FUTURE WORK / OUTLOOK
+## AUSSICHT / MÖGLICHKEITEN ZUR WEITERENTWICKLUNG
 
 Hier kurz Weiterentwicklungsmöglichkeiten, Optimierungsmöglichkeiten darlegen
