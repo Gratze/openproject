@@ -74,8 +74,7 @@ Dadurch kann über das TrackerInput.cs Script, wenn ein Button gedrückt wird, b
 
 ### 3D MODELL
 
-Hier noch eine kurze Beschreibung des Modells.
-Für das Modell wurde ein lizensiertes Herzmodell verwendet, welches nicht auf Github hochgeladen werden darf.
+Das Modell besteht aus zwei Hälften. Dafür wurde das Herz horizontal geteilt. An der oberen Hälfte befindet sich ein Steckplatz für einen Button sowie für die Schiene an welcher der Tracker angebracht wird. An der unteren Hälfte befindet sich eine Art Klappe mit einem darunter liegender Button-Steckplatz sowie ein weiterer Button-Steckplatz an der Seite. Für das Modell wurde ein lizensiertes Herzmodell verwendet, welches nicht auf Github hochgeladen werden darf.
 
 - **Software für die Bearbeitung**</br>
 Das vorgegebene Modell wurde bereits als STL-Datei zur Verfügung gestellt, weshalb das Modell nur aus Dreiecken bestand. Die Bearbeitung einer solchen Datei ist deutlicher aufwendiger und umständlicher, als die Bearbeitung einer normalen OBJ- oder FBX-Datei. Für die Bearbeitung und Optimierung des Modells, damit dieses später auch im 3D-Drucker gedruckt werden konnte, wurde die Open-Source Software Blender verwendet. Die Software hat den Vorteil, dass man sich "Non-Manifold"-Bereiche, also Bereiche die später in der Slicer Software nicht korrekt verarbeitet werden können, selektiert und hervorheben kann. Dadurch kann ein Modell bereits in der Software perfekt für den Slicer vorbereitet werden, um keine späteren Schwierigkeiten zu bekommen.
@@ -95,8 +94,15 @@ Das Modell wurde, zur Vermeidung etlicher Druckversuche und einer hohen Menge an
 
 ## FINALER PROTOTYP
 
-Hier fertigen Prototypen zeigen und kurz drauf eingehen
+Sollte hier noch ein kleiner Text stehen? Vielleicht 2-3 Sätze zum Prototypen?
+TO DO: Bilder von fertigem Prototyp
+
+**Arduino**</br>
+TO DO: Fritzing Bild
+
+**Tracker**</br>
+TO DO: Fritzing Bild
 
 ## AUSSICHT / MÖGLICHKEITEN ZUR WEITERENTWICKLUNG
 
-Hier kurz Weiterentwicklungsmöglichkeiten, Optimierungsmöglichkeiten darlegen
+Tangibles in der medizinischen Lehre weisen großes Potenzial auf, so könnten verschiedene Funktionsweisen der Organe über Tangibles und entsprechenden Animationen in einer Unity-Szene als Hilfreich empfunden werden können. Für die Weiterentwicklung des Herzens könnte auf eine realistische Animation von LEDs und Vibration geachtet werden. Weitere Rhythmen, wie die eines kranken Herzens, könnten als Funktion hinzugefügt werden. Zusätzlich könnte ein detailreiches Modell erstellt werden, welches bereits Kabelkanäle und Steckplätze für die gesamte Elektronik besitzt, damit diese nicht mehr Frei im Herzen liegt. Dadurch könnte die Handhabung und Weiterentwicklung des Tangibles erleichtert werden. Ein weiteres spannendes Feature könnte die Anpassung der Größe des Modells auf die eines gesunden Herzens einer erwachsenen Person sein. Dadurch könnte die Interaktion mit dem Tangible sowie die Immersion deutlich realistischer gestaltet werden.
