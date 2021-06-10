@@ -45,6 +45,8 @@ Hier Erklärung:
 - Tracker in SteamVR
 - Probleme: Brille und Controller rauswerfen, damit Vive Tracker in Unity erkannt wird
 
+TO DO: SCHALTPLAN TRACKER
+
 ### ARDUINO
 
 - Ein Adafruit, der an den PC per USB angeschlossen ist → Transmitter
@@ -59,7 +61,7 @@ Hier Erklärung:
 └── └── └── transmitter.ino # Send messages from Adafruit connected to PC
 ```
 
-- TODO: Schaltplan
+TO DO: SCHALTPLAN ARDUINO
 
 ### SENDEN UND EMPFANGEN DER DATEN
 
@@ -98,7 +100,7 @@ Sollte hier noch ein kleiner Text stehen? Vielleicht 2-3 Sätze zum Prototypen?
 TO DO: Bilder von fertigem Prototyp
 
 **Arduino**</br>
-TO DO: Fritzing Bild
+![Receiver](./docs/Heart_Schematic_Steckplatine.png)
 
 **Tracker**</br>
 TO DO: Fritzing Bild
