@@ -14,7 +14,7 @@ Ziel des Projektes stellt die prototypische Realisierung eines greifbaren Interf
 
 In einem iterativen Prozess mit insgesamt 4 Sprints wurde die Umsetzung des Prototypen geplant und realisiert. In der ersten Iteration wurde konzeptionell gearbeitet. Dabei wurden verschiedene Tangibles und die entsprechende Umsetzung recherchiert. Der Fokus lag auf den benötigten Komponenten und den verschiedenen Möglichkeiten ein Tangible zu entwickeln. Aus der Recherche ergaben sich teilweise die Anforderungen an den Prototypen sowie die benötigte Schnittstelle zwischen Unity und dem Tangible. In den zweiten Iteration wurde die Schnittstelle zwschen Unity und dem Tangible (Arduino) den Anforderungen entsprechend angepasst sowie eine erste Version des Tangibles mittels eines 3D-Druckers gedruckt. In den weiteren Iterationen lag der Fokus auf einem passenden 3D-Modell für das Herz sowie den entsprechenden Anpassungen für die verbaute Elektronik sowie den 3D-Druck. Weitere Funktionen bzw. softwareseitige Veränderungen entsprachen in diesen Iterationen eher kosmetischer Natur. </br>
 </br>
-In den folgenden Unterkapiteln wird auf die verschiedenen Komponenten des Tangibles sowie der benötigten Schnittstelle für die volle Funktionalität genauer eingegangen.
+Die folgende Abbildung zeigt die verschiedenen Komponenten sowie die entsprechenden Funktionen des Tangibles. Diese Komponenten werden in den folgenden Unterkapitel genauer betrachtet. </br>
 
 ![Open Health Components](./docs/component_diagram.png)
 
