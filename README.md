@@ -12,18 +12,15 @@ Ziel des Projektes stellt die prototypische Realisierung eines greifbaren Interf
 
 ## APPROACH
 
-In einem iterativen Prozess mit insgesamt 4 Sprints wurde die Umsetzung des Prototypen geplant und realisiert. In der ersten Iteration wurde konzeptionell gearbeitet. Dabei wurden verschiedene Tangibles und die entsprechende Umsetzung recherchiert. Der Fokus lag auf den benötigten Komponenten und den verschiedenen Möglichkeiten ein Tangible zu entwickeln. Aus der Recherche ergaben sich teilweise die Anforderungen an den Prototypen sowie die benötigte Schnittstelle zwischen Unity und dem Tangible. In den zweiten Iteration wurde die Schnittstelle zwschen Unity und dem Tangible (Arduino) den Anforderungen entsprechend angepasst sowie eine erste Version des Tangibles mittels eines 3D-Druckers gedruckt. In den weiteren Iterationen lag der Fokus auf einem passenden 3D-Modell für das Herz sowie den entsprechenden Anpassungen für die verbaute Elektronik sowie den 3D-Druck. Weitere Funktionen bzw. softwareseitige Veränderungen entsprachen in diesen Iterationen eher kosmetischer Natur. </br>
+In einem iterativen Prozess mit insgesamt 4 Sprints wurde die Umsetzung des Prototypen geplant und realisiert. In der ersten Iteration wurde konzeptionell gearbeitet. Dabei wurden verschiedene Tangibles und deren entsprechende Umsetzung recherchiert. Der Fokus lag auf den benötigten Komponenten und den verschiedenen Möglichkeiten ein Tangible zu entwickeln. Aus der Recherche ergaben sich teilweise die Anforderungen an den Prototypen sowie die benötigte Schnittstelle zwischen Unity und dem Tangible. In der zweiten Iteration wurde die Schnittstelle zwschen Unity und dem Tangible (Arduino) den Anforderungen entsprechend angepasst sowie eine erste Version des Tangibles mittels eines 3D-Druckers gedruckt. In den weiteren Iterationen lag der Fokus auf einem passenden 3D-Modell für das Herz, den entsprechenden Anpassungen für die verbaute Elektronik und dem 3D-Druck. Weitere Funktionen bzw. softwareseitige Veränderungen entsprachen in diesen Iterationen überwiegend kosmetischer Natur. </br>
 </br>
-Die folgende Abbildung zeigt die verschiedenen Komponenten sowie die entsprechenden Funktionen des Tangibles. Diese Komponenten werden in den folgenden Unterkapitel genauer betrachtet. </br>
+Die folgende Abbildung zeigt die verschiedenen Komponenten sowie die entsprechenden Funktionen des Tangibles. Diese Komponenten werden in den folgenden Unterkapitel genauer dargestellt und erklärt. </br>
 
 ![Open Health Components](./docs/component_diagram.png)
 
 ### UNITY
 
-- Standard Unity Projekt
-- SteamVR hinzugefügt
-- Zwei Skripte, um mit ViveTracker und Arduino zu kommunizieren
-
+Kurze Einleitung: Was passiert in Unity? </br>
 ```bash
 ├── ViveTrackerTest
 │   ├── Assets
@@ -35,6 +32,19 @@ Die folgende Abbildung zeigt die verschiedenen Komponenten sowie die entsprechen
 │   │   ├── SteamVR
 └── └── ... # Standard Unity project files
 ```
+- **ArduinoConnector.cs**</br>
+Hier Erklärung: Was macht das Skript? </br>
+</br>
+
+- **TrackerInput.cs**</br>
+Hier Erklärung: Was macht das Skript? </br>
+</br>
+
+- **SteamVR**</br>
+Hier Erklärung:
+- Tracker in SteamVR
+- Probleme: Brille und Controller rauswerfen, damit Vive Tracker in Unity erkannt wird
+</br>
 
 ### ARDUINO
 
@@ -88,10 +98,6 @@ Da man häufig erst ein Gefühl für das Modell bekommt wenn es gedruckt wurde, 
 ## OUTCOME
 
 Hier fertigen Prototypen zeigen und kurz drauf eingehen
-
-## ISSUES
-
-Issues faced during development
 
 ## FUTURE WORK / OUTLOOK
 
