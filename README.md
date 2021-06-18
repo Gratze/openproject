@@ -16,7 +16,8 @@ Die folgende Abbildung zeigt die verschiedenen Komponenten sowie die entsprechen
 
 ### UNITY
 
-Kurze Einleitung: Was passiert in Unity? </br>
+Die Unity Szene besteht lediglich aus einem Würfel und einem Button. Der Würfel dient als Platzhalter für ein Herzmodell. Über einen am physischen Modell angebrachten Vive Tracker werden die Bewegungen des Herzens über den Würfel in der Szene dargestellt. Der Button dient zur (De-)Aktivierung des simulierten Herzschlags. Die ausführliche Erklärung kann in dem Abschnitt **Senden und Empfangen der Daten** nachgelesen werden. </br>
+
 ```bash
 ├── ViveTrackerTest
 │   ├── Assets
@@ -28,26 +29,16 @@ Kurze Einleitung: Was passiert in Unity? </br>
 │   │   ├── SteamVR
 └── └── ... # Standard Unity project files
 ```
-- **ArduinoConnector.cs**</br>
-Hier Erklärung: Was macht das Skript? </br>
-</br>
 
-- **TrackerInput.cs**</br>
-Hier Erklärung: Was macht das Skript? </br>
-</br>
+TO DO: SCHALTPLAN TRACKER
 
 - **SteamVR**</br>
 Hier Erklärung:
 - Tracker in SteamVR
 - Probleme: Brille und Controller rauswerfen, damit Vive Tracker in Unity erkannt wird
 
-TO DO: SCHALTPLAN TRACKER
-
-### ARDUINO
-
-- Ein Adafruit, der an den PC per USB angeschlossen ist → Transmitter
-- Ein Adafruit, der im Herz eingebaut ist → Receiver
-- Kommunikation über 433 MHz Radio
+### ARDUINO (ADAFRUIT)
+Für das Projekt wurden zwei Adafruit Feather Boards verwendet. Ein Adafruit dient als Transmitter und wird an dem PC oder Laptop angeschlossen, andem die Unity Szene gestartet wird. Dieser dient als **Transmitter**. Der zweite Adafruit ist im Herzen verbaut und wird über einen Akku versorgt. Dieser wird als **Receiver** verwendet. Die Kommunikation der beiden Adafruits findet über eine 433 MHz Radio-Frequenz statt. Der Receiver ist für die Steuerung der LEDs und der Vibration, also der Simulation des Hertschlags, zuständig. Eine ausführliche Erklärung zur Logik kann in dem Abschnitt **Senden und Empfangen der Daten** nachgelesen werden.
 
 ```bash
 ├── arduino
@@ -66,9 +57,9 @@ Zum Senden an den Adafruit "Receiver", welcher sich im Herzen befindet, wird ein
 </br>
 In der Unity-Szene ist das Skript dem Würfel hinzugefügt. Dort kann der COM-Port an dem der Transmitter am Computer angeschlossen ist, festgelegt werden. Ebenso kann die BaudRate angepasst werden.</br>
 </br>
-Das Skript "ArduinoConnector.cs" verbindet sich beim Start der Szene über den COM-Port mit dem Transmitter. Das Skript stellt verschiedene Funktionen zum verschicken oder empfangen von Daten durch den Transmitter zur Verfügung. In unserem Beispiel verwenden wir nur die SendToArduino(string command) Funktion, welche den übergebenen Befehl in eine Queue setzt. Diese Queue wird fortlaufend in einer Loop überprüft. Falls etwas darin steht, wird über die Funktion WriteToArduino(string message) versucht, die Nachricht über den SerialPort an den Transmitter zu übergeben. Im Transmitter wird die SerialCommands Library verwendet, mit der Events erstellt werden können, die auf ankommende Strings reagieren. Dadurch können beliebig weitere Events hinzugefügt werden.</br>
+Das Skript "**ArduinoConnector.cs**" verbindet sich beim Start der Szene über den COM-Port mit dem Transmitter. Das Skript stellt verschiedene Funktionen zum verschicken oder empfangen von Daten durch den Transmitter zur Verfügung. In unserem Beispiel verwenden wir nur die **SendToArduino(string command)** Funktion, welche den übergebenen Befehl in eine Queue setzt. Diese Queue wird fortlaufend in einer Loop überprüft. Falls etwas darin steht, wird über die Funktion **WriteToArduino(string message)** versucht, die Nachricht über den SerialPort an den Transmitter zu übergeben. Im Transmitter wird die SerialCommands Library verwendet, mit der Events erstellt werden können, die auf ankommende Strings reagieren. Dadurch können beliebig weitere Events hinzugefügt werden.</br>
 </br>
-Dadurch kann über das TrackerInput.cs Script, wenn ein Button gedrückt wird, bspw. die Nachricht (als String) "on" oder "off" an den Transmitter geschickt werden. Die jeweiligen Events werten den String aus. Falls ein Event auf den String passt, wird eine Funktion ausgeführt, die eine neue Nachricht (ebenfalls als String) über die 433MHz Radio-Frequenz an den Receiver schickt. Wird also die "on"-Nachricht erkannt, dann wird eine Nachricht mit dem Wert "1" an den Receiver geschickt. Im Receiver wird über die RHReliableDatagram-Library der rf69_manager initialisiert, welcher erkennt ob Nachrichten empfangen werden. In der Loop wird dann überprüft ob im Buffer des rf69_manager eine Nachricht liegt. Ist dies der Fall, wird dieser ausgelesen und in einen Char umgewandelt. Dieser Char setzt dann in der Loop, über eine einfache Switch-Case Abfrage, den led_on-Bool auf true oder false. Je nach Zustand werden in der Loop die Leds und die Vibration entsprechend an- oder ausgeschaltet.
+Dadurch kann über das **TrackerInput.cs** Skript, wenn ein Button gedrückt wird, bspw. die Nachricht (als String) "on" oder "off" an den Transmitter geschickt werden. Die jeweiligen Events werten den String aus. Falls ein Event auf den String passt, wird eine Funktion ausgeführt, die eine neue Nachricht (ebenfalls als String) über die 433MHz Radio-Frequenz an den Receiver schickt. Wird also die "on"-Nachricht erkannt, dann wird eine Nachricht mit dem Wert "1" an den Receiver geschickt. Im Receiver wird über die RHReliableDatagram-Library der rf69_manager initialisiert, welcher erkennt ob Nachrichten empfangen werden. In der Loop wird dann überprüft ob im Buffer des rf69_manager eine Nachricht liegt. Ist dies der Fall, wird dieser ausgelesen und in einen Char umgewandelt. Dieser Char setzt dann in der Loop, über eine einfache Switch-Case Abfrage, den led_on-Bool auf true oder false. Je nach Zustand werden in der Loop die Leds und die Vibration entsprechend an- oder ausgeschaltet.
 
 ### 3D MODELL
 
