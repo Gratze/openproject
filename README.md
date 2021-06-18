@@ -83,8 +83,7 @@ Das Modell wurde, zur Vermeidung etlicher Druckversuche und einer hohen Menge an
 
 ## FINALER PROTOTYP
 
-Sollte hier noch ein kleiner Text stehen? Vielleicht 2-3 Sätze zum Prototypen?
-TO DO: Bilder von fertigem Prototyp
+![Einblick in den finalen Prototypen](./docs/Prototyp.png)
 
 **Arduino**</br>
 ![Receiver](./docs/Heart_Schematic_Steckplatine.png)
