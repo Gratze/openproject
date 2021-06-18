@@ -2,10 +2,6 @@
 
 Open Project ist ein freies Wahlpflichtfach im Fachbereich Medien an der Hochschule Düsseldorf. In dem Projekt geht es um die digitale bzw. virtuelle Unterstützung der Lehre im medizinischen Bereich durch Tangibles. Dazu wurde ein 3D-Objekt als greifbares Interface zur Veranschaulichung des menschlichen Herzens entwickelt und prototypisch realisiert. 
 
-## MOTIVATION
-
-Hier vielleicht kurze Motivation wieso wir das Projekt gemacht haben und worum es nochmal genau geht
-
 ## ZIELSETZUNG
 
 Ziel des Projektes stellt die prototypische Realisierung eines greifbaren Interfaces zur Unterstützung der Lehre in einem iterativen Prozess dar. Der Prototyp soll Studierenden der Medizin die Anatomie des Herzens vermitteln. Dazu soll mittels LEDs und Vibration ein Herzschlag simuliert werden. Zusätzlich soll das Tangible in Unity angesprochen und verschiedene Funktionen des Tangibles über Unity ausgeführt werden können.
