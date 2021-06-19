@@ -33,9 +33,9 @@ Die Unity Szene besteht lediglich aus einem Würfel und einem Button. Der Würfe
 - **Vive Tracker und SteamVR**</br>
 Der Vive Tracker ist an der Oberseite des Herzens angebracht. An den Vive Tracker sind über die Pogo Pins zwei Buttons; (1) oben an der Seite und (2) hinter der Klappe) sowie die Klappe selbst angebunden. Die nachfolgende Abbildung zeigt, wie der Tracker mit den verschiedenen Komponenten verbunden ist. Zur besseren Nachvollziehbarkeit, sind die Kabel entsprechend dem Prototypen eingefärbt.
 
-![Tracker](./docs/Heart_Schematic_Steckplatine.png)
+![Tracker](./docs/Tracker_Buttons_Visualisierung.png)
 
-Für den Input muss der Tracker über SteamVR verbunden werden. Sind an einem Computer bereits zwei Controller über SteamVR verbunden, muss mindestens einer davon entfernt werden. Dazu wird folgender Pfad ausgewählt:</br>
+Für den Input muss der Tracker über SteamVR verbunden werden. Sind an einem Computer bereits zwei Controller über SteamVR verbunden, muss mindestens einer davon entfernt werden. Dazu wird folgender Pfad geöffnet:</br>
 C:\Program Files (x86)\Steam\steamapps\common\SteamVR\tools\lighthouse\bin\win64 </br>
 Anschließen wird lighthouse_console.exe ausgeführt und der Befehl **unpairall** in die Konsole eingegeben. Danach kann der Tracker über SteamVR verbunden und genutzt werden. 
 
