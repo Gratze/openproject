@@ -30,12 +30,14 @@ Die Unity Szene besteht lediglich aus einem Würfel und einem Button. Der Würfe
 └── └── ... # Standard Unity project files
 ```
 
-TO DO: SCHALTPLAN TRACKER
+- **Vive Tracker und SteamVR**</br>
+Der Vive Tracker ist an der Oberseite des Herzens angebracht. An den Vive Tracker sind über die Pogo Pins zwei Buttons; (1) oben an der Seite und (2) hinter der Klappe) sowie die Klappe selbst angebunden. Die nachfolgende Abbildung zeigt, wie der Tracker mit den verschiedenen Komponenten verbunden ist. Zur besseren Nachvollziehbarkeit, sind die Kabel entsprechend dem Prototypen eingefärbt.
 
-- **SteamVR**</br>
-Hier Erklärung:
-- Tracker in SteamVR
-- Probleme: Brille und Controller rauswerfen, damit Vive Tracker in Unity erkannt wird
+![Tracker](./docs/Heart_Schematic_Steckplatine.png)
+
+Für den Input muss der Tracker über SteamVR verbunden werden. Sind an einem Computer bereits zwei Controller über SteamVR verbunden, muss mindestens einer davon entfernt werden. Dazu wird folgender Pfad ausgewählt:</br>
+C:\Program Files (x86)\Steam\steamapps\common\SteamVR\tools\lighthouse\bin\win64 </br>
+Anschließen wird lighthouse_console.exe ausgeführt und der Befehl **unpairall** in die Konsole eingegeben. Danach kann der Tracker über SteamVR verbunden und genutzt werden. 
 
 ### ARDUINO (ADAFRUIT)
 Für das Projekt wurden zwei Adafruit Feather Boards verwendet. Ein Adafruit dient als Transmitter und wird an dem PC oder Laptop angeschlossen, andem die Unity Szene gestartet wird. Dieser dient als **Transmitter**. Der zweite Adafruit ist im Herzen verbaut und wird über einen Akku versorgt. Dieser wird als **Receiver** verwendet. Die Kommunikation der beiden Adafruits findet über eine 433 MHz Radio-Frequenz statt. Der Receiver ist für die Steuerung der LEDs und der Vibration, also der Simulation des Hertschlags, zuständig. Eine ausführliche Erklärung zur Logik kann in dem Abschnitt **Senden und Empfangen der Daten** nachgelesen werden.
