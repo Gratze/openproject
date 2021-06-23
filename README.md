@@ -35,7 +35,7 @@ Der Vive Tracker ist an der Oberseite des Herzens angebracht. An den Vive Tracke
 
 ![Tracker](./docs/Tracker_Buttons_Visualisierung.png)
 
-Für den Input muss der Tracker über SteamVR verbunden werden. Sind an einem Computer bereits zwei Controller über SteamVR verbunden, muss mindestens einer davon entfernt werden. Dazu wird folgender Pfad geöffnet:</br>
+Für den Input muss der Tracker über SteamVR verbunden werden. Grundsätzlich können über SteamVR jedoch nur zwei Input-Devices eingesetzt werden. Sind an einem Computer bereits zwei Controller über SteamVR verbunden, muss mindestens einer davon entfernt werden. Dazu wird folgender Pfad geöffnet:</br>
 C:\Program Files (x86)\Steam\steamapps\common\SteamVR\tools\lighthouse\bin\win64 </br>
 Anschließen wird lighthouse_console.exe ausgeführt und der Befehl **unpairall** in die Konsole eingegeben. Danach kann der Tracker über SteamVR verbunden und genutzt werden. 
 
